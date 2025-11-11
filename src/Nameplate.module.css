@@ -1,0 +1,13 @@
+:root {
+  --body-color: black;
+  --background-color: white;
+}
+
+.nameplate {
+    text-align: right;
+    font-size: 4rem;
+    background: var(--background-color);
+    color: var(--body-color);
+    padding: 0 1rem;
+    border: solid;
+}
