@@ -1,13 +1,20 @@
 :root {
-  --body-color: black;
-  --background-color: white;
+    --primary-color: black;
+    --secondary-color: white;
 }
 
 .nameplate {
     text-align: right;
     font-size: 4rem;
-    background: var(--background-color);
-    color: var(--body-color);
+    background: var(--secondary-color);
+    color: var(--primary-color);
     padding: 0 1rem;
     border: solid;
+    /* TODO: fade out text separately so it doesn't instantly transition */
+    transition: all 0.3s; 
+}
+
+.alt {
+    background: var(--primary-color);
+    color: var(--secondary-color);
 }
