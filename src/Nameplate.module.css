@@ -1,4 +1,5 @@
 .nameplate {
+    width: 100%;
     font-size: 4rem;
     background: var(--secondary-color);
     color: var(--primary-color);
@@ -14,20 +15,17 @@
 }
 
 .container {
-    width: 20rem;
-        display: flex;
-        flex-direction: column;
-        align-items: end;
-    &.left {
-        text-align: left;
-    }
+    width: 19rem;
+    display: flex;
+    flex-direction: column;
+    text-align: right;
 
-    &.center {
-        text-align: center;
+    &.left {
+        align-items: start;
     }
 
     &.right {
-        text-align: right;
+        align-items: end;
     }
 }
 
