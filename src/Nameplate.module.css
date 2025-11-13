@@ -16,7 +16,9 @@
         background: var(--primary-color);
         color: var(--secondary-color);
     }
+}
 
+.container {
     &.left {
         text-align: left;
     }
@@ -27,5 +29,18 @@
 
     &.right {
         text-align: right;
+    }
+}
+.menu {
+    display: flex;
+    margin: 1rem;
+    gap: 1.5rem;
+
+    &.right {
+        justify-content: flex-end;
+    }
+
+    &.left {
+        justify-content: flex-start;
     }
 }
