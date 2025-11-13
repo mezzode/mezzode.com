@@ -1,8 +1,3 @@
-:root {
-    --primary-color: black;
-    --secondary-color: white;
-}
-
 .nameplate {
     font-size: 4rem;
     background: var(--secondary-color);
@@ -19,6 +14,10 @@
 }
 
 .container {
+    width: 20rem;
+        display: flex;
+        flex-direction: column;
+        align-items: end;
     &.left {
         text-align: left;
     }
@@ -31,6 +30,7 @@
         text-align: right;
     }
 }
+
 .menu {
     display: flex;
     margin: 1rem;
