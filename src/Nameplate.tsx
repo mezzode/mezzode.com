@@ -8,7 +8,7 @@ interface Props {
   alignment: Alignment;
 }
 
-const Nameplate = ({ alignment }: Props) => {
+function Nameplate({ alignment }: Props) {
   const [showAlt, setShowAlt] = useState<boolean>(false);
   return (
     <div className={clsx(styles.container, styles[alignment])}>
@@ -23,18 +23,22 @@ const Nameplate = ({ alignment }: Props) => {
       <Menu {...{ alignment }} />
     </div>
   );
-};
+}
 
 function Menu({ alignment }: { alignment: Alignment }) {
   return (
     <div className={clsx(styles.menu, styles[alignment])}>
-      <svg className="bi" width="32" height="32" fill="currentColor">
-        <use href="node_modules/bootstrap-icons/bootstrap-icons.svg#envelope" />
-      </svg>
-      <svg className="bi" width="32" height="32" fill="currentColor">
-        <use href="node_modules/bootstrap-icons/bootstrap-icons.svg#github" />
-      </svg>
+      <Icon icon="envelope" />
+      <Icon icon="github" />
     </div>
+  );
+}
+
+function Icon({ icon }: { icon: string }) {
+  return (
+    <svg className="bi" width="32" height="32" fill="currentColor">
+      <use href={`node_modules/bootstrap-icons/bootstrap-icons.svg#${icon}`} />
+    </svg>
   );
 }
 
