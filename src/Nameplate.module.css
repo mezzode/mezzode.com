@@ -43,4 +43,12 @@
     &.left {
         justify-content: flex-start;
     }
+
+    a {
+        color: var(--primary-color);
+
+        &:hover {
+            opacity: 80%;
+        }
+    }
 }
