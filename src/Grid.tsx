@@ -34,7 +34,7 @@ export default function Grid({
       for (let x = 0; x < canvas.width; x += spacing) {
         for (let y = 0; y < canvas.height; y += spacing) {
           const distance = Math.sqrt((mouseX - x) ** 2 + (mouseY - y) ** 2);
-          const opacity = distance / activeRadius;
+          const opacity = Math.max(1 - distance / activeRadius, 0.2);
           ctx.beginPath();
           ctx.strokeStyle = `rgb(from ${color} r g b / ${opacity})`;
           ctx.beginPath();
