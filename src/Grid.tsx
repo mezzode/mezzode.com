@@ -68,6 +68,9 @@ export default function Grid({
       className={styles.grid}
       width={window.innerWidth}
       height={window.innerHeight}
-    />
+    >
+      There should be a pretty grid here, but your browser doesn't support
+      `canvas`.
+    </canvas>
   );
 }
