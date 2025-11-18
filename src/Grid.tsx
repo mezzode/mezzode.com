@@ -1,4 +1,5 @@
 import { useRef, useEffect } from "react";
+import styles from "./Grid.module.css";
 
 interface GridProps {
   color?: string;
@@ -64,7 +65,7 @@ export default function Grid({
   return (
     <canvas
       ref={canvasRef}
-      className="grid"
+      className={styles.grid}
       width={window.innerWidth}
       height={window.innerHeight}
     />

@@ -3,7 +3,6 @@ import styles from "./App.module.css";
 import Grid from "./Grid";
 
 function App() {
-  
   const primaryColor = getComputedStyle(
     document.documentElement
   ).getPropertyValue("--primary-color");
@@ -11,11 +10,15 @@ function App() {
     document.documentElement
   ).getPropertyValue("--secondary-color");
 
+  // TODO: Theme toggle and customizer
+
   return (
-    <div className={styles.app}>
-      <Nameplate alignment="right" />
+    <>
+      <div className={styles.content}>
+        <Nameplate alignment="right" />
+      </div>
       <Grid color={primaryColor} />
-    </div>
+    </>
   );
 }
 
