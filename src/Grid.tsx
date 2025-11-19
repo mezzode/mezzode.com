@@ -32,8 +32,6 @@ export default function Grid({
     };
 
     const drawGrid = (mouseX: number, mouseY: number) => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height); // TODO: Consider not clearing and fully redrawing
-
       for (let x = spacing / 2; x < canvas.width; x += spacing) {
         for (let y = spacing / 2; y < canvas.height; y += spacing) {
           const distance = Math.sqrt((mouseX - x) ** 2 + (mouseY - y) ** 2);
