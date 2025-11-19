@@ -72,14 +72,3 @@
 .close {
     text-align: center;
 }
-
-.icon-button {
-    cursor: pointer;
-    background: none;
-    border: none;
-    color: var(--primary-color);
-
-    &:hover {
-        opacity: 80%;
-    }
-}
