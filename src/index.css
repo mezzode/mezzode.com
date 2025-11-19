@@ -1,11 +1,12 @@
+@import "@ibm/plex-sans/css/ibm-plex-sans-default.css";
+
 :root {
   --dark: #242424;
   --light: #f9f9f9;
   --primary-color: var(--dark);
   --secondary-color: var(--light);
 
-  /* TODO: update font */
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'IBM Plex Sans', system-ui, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
