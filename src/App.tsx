@@ -21,9 +21,27 @@ function App() {
   // TODO: Theme toggle and customizer
 
   const [mode, setMode] = useState<Mode>(initialMode);
+  /**
+   * Wrapper to update CSS properties as well when setting mode
+   */
+  const updateMode = useCallback(
+    (mode: Mode) => {
+      setMode(mode);
+      document.documentElement.style.setProperty(
+        "--primary-color",
+        mode === "dark" ? "var(--light)" : "var(--dark)"
+      );
+      document.documentElement.style.setProperty(
+        "--secondary-color",
+        mode === "dark" ? "var(--dark)" : "var(--light)"
+      );
+    },
+    [setMode]
+  );
+
   const handleModeChange = useCallback(
-    (e: MediaQueryListEvent) => setMode(e.matches ? "dark" : "light"),
-    []
+    (e: MediaQueryListEvent) => updateMode(e.matches ? "dark" : "light"),
+    [updateMode]
   );
 
   useEffect(() => {
@@ -35,7 +53,7 @@ function App() {
   return (
     <>
       <div className={styles.content}>
-        <Nameplate alignment="right" {...{ mode }} />
+        <Nameplate alignment="right" {...{ mode, updateMode }} />
       </div>
       <Grid {...{ primaryColor, secondaryColor }} />
     </>
