@@ -17,7 +17,7 @@ function App() {
       <div className={styles.content}>
         <Nameplate alignment="right" />
       </div>
-      <Grid color={primaryColor} />
+      <Grid {...{ primaryColor, secondaryColor }} />
     </>
   );
 }

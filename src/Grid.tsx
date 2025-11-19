@@ -2,14 +2,16 @@ import { useRef, useEffect } from "react";
 import styles from "./Grid.module.css";
 
 interface GridProps {
-  color?: string;
+  primaryColor?: string;
+  secondaryColor?: string;
   nodeRadius?: number;
   spacing?: number;
   activeRadius?: number;
 }
 
 export default function Grid({
-  color = "#242424",
+  primaryColor = "#242424",
+  secondaryColor = "#f9f9f9",
   nodeRadius = 4,
   spacing = 60,
   activeRadius = 150,
@@ -36,12 +38,12 @@ export default function Grid({
         for (let y = spacing / 2; y < canvas.height; y += spacing) {
           const distance = Math.sqrt((mouseX - x) ** 2 + (mouseY - y) ** 2);
           const opacity = Math.max(1 - distance / activeRadius, 0.2);
+          const opacityPercent = `${opacity * 100}%`;
           ctx.beginPath();
-          ctx.strokeStyle = `rgb(from ${color} r g b / ${opacity})`;
+          ctx.strokeStyle = `color-mix(in oklab, ${primaryColor} ${opacityPercent}, ${secondaryColor})`;
           ctx.beginPath();
           ctx.moveTo(x - nodeRadius, y);
           ctx.lineTo(x + nodeRadius, y);
-          ctx.stroke();
           ctx.moveTo(x, y - nodeRadius);
           ctx.lineTo(x, y + nodeRadius);
           ctx.stroke();
@@ -60,7 +62,7 @@ export default function Grid({
       window.removeEventListener("resize", resizeCanvas);
       window.removeEventListener("mousemove", handleMouseMove);
     };
-  }, [color, nodeRadius, spacing, activeRadius]);
+  }, [primaryColor, secondaryColor, nodeRadius, spacing, activeRadius]);
 
   return (
     <canvas
