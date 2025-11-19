@@ -1,6 +1,7 @@
 import { useCallback, useState } from "react";
 import clsx from "clsx";
 import styles from "./Nameplate.module.css";
+import icons from "bootstrap-icons/bootstrap-icons.svg";
 
 type Alignment = "left" | "center" | "right";
 
@@ -78,7 +79,7 @@ function Icon({
       fill="currentColor"
       aria-label={label}
     >
-      <use href={`node_modules/bootstrap-icons/bootstrap-icons.svg#${icon}`} />
+      <use href={`${icons}#${icon}`} />
     </svg>
   );
 
