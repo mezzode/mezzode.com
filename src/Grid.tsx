@@ -70,6 +70,7 @@ export default function Grid({
       className={styles.grid}
       width={window.innerWidth}
       height={window.innerHeight}
+      aria-label="Pretty Grid"
     >
       There should be a pretty grid here, but your browser doesn't support
       `canvas`.

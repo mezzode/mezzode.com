@@ -42,10 +42,18 @@ function Menu({
 
   return (
     <div className={clsx(styles.menu, styles[alignment])}>
-      <Icon icon="envelope" href="mailto:mezzode@mezzode.com" />
-      <Icon icon="github" href="https://github.com/mezzode" />
-      <Icon icon="linkedin" href="https://www.linkedin.com/in/mezzode/" />
-      <Icon icon={mode === "dark" ? "moon" : "sun"} onclick={toggleMode} />
+      <Icon label="Email" icon="envelope" href="mailto:mezzode@mezzode.com" />
+      <Icon label="GitHub" icon="github" href="https://github.com/mezzode" />
+      <Icon
+        label="LinkedIn"
+        icon="linkedin"
+        href="https://www.linkedin.com/in/mezzode/"
+      />
+      <Icon
+        label="Theme Toggle"
+        icon={mode === "dark" ? "moon" : "sun"}
+        onclick={toggleMode}
+      />
     </div>
   );
 }
@@ -54,26 +62,45 @@ function Icon({
   icon,
   href,
   onclick,
+  label,
 }: {
   icon: string;
+  /** Label for accessibility */
+  label: string;
   href?: string;
   onclick?: () => void;
 }) {
   const svg = (
-    <svg className="bi" width="32" height="32" fill="currentColor">
+    <svg
+      className="bi"
+      width="32"
+      height="32"
+      fill="currentColor"
+      aria-label={label}
+    >
       <use href={`node_modules/bootstrap-icons/bootstrap-icons.svg#${icon}`} />
     </svg>
   );
 
   if (href) {
     return (
-      <a href={href} target="_blank" rel="noopener noreferrer">
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={label}
+      >
         {svg}
       </a>
     );
   } else if (onclick) {
     return (
-      <button type="button" className={styles["icon-button"]} onClick={onclick}>
+      <button
+        type="button"
+        className={styles["icon-button"]}
+        aria-label={label}
+        onClick={onclick}
+      >
         {svg}
       </button>
     );
