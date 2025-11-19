@@ -51,11 +51,11 @@ export default function Grid({
       }
     };
     const handleMouseMove = (e: MouseEvent) => {
-      drawGrid(e.offsetX, e.offsetY);
+      drawGrid(e.clientX, e.clientY);
     };
 
     window.addEventListener("resize", resizeCanvas);
-    canvas.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mousemove", handleMouseMove); // On window so works when other elements cover
 
     resizeCanvas();
     return () => {
