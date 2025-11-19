@@ -6,9 +6,10 @@ type Alignment = "left" | "center" | "right";
 
 interface Props {
   alignment: Alignment;
+  mode: "light" | "dark";
 }
 
-function Nameplate({ alignment }: Props) {
+function Nameplate({ alignment, mode }: Props) {
   const [showAlt, setShowAlt] = useState<boolean>(false);
   return (
     <div className={clsx(styles.container, styles[alignment])}>
@@ -20,17 +21,24 @@ function Nameplate({ alignment }: Props) {
       >
         {showAlt ? "Ash Bacal" : "mezzode"}
       </div>
-      <Menu {...{ alignment }} />
+      <Menu {...{ alignment, mode }} />
     </div>
   );
 }
 
-function Menu({ alignment }: { alignment: Alignment }) {
+function Menu({
+  alignment,
+  mode,
+}: {
+  alignment: Alignment;
+  mode: "light" | "dark";
+}) {
   return (
     <div className={clsx(styles.menu, styles[alignment])}>
       <Icon icon="envelope" href="mailto:mezzode@mezzode.com" />
       <Icon icon="github" href="https://github.com/mezzode" />
       <Icon icon="linkedin" href="https://www.linkedin.com/in/mezzode/" />
+      <Icon icon={mode === "dark" ? "sun" : "moon"} />
     </div>
   );
 }
