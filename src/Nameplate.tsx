@@ -4,11 +4,12 @@ import styles from "./Nameplate.module.css";
 import icons from "bootstrap-icons/bootstrap-icons.svg";
 
 type Alignment = "left" | "center" | "right";
+type Mode = "light" | "dark";
 
 interface Props {
   alignment: Alignment;
-  mode: "light" | "dark";
-  updateMode: (mode: "light" | "dark") => void;
+  mode: Mode;
+  updateMode: (mode: Mode) => void;
 }
 
 function Nameplate({ alignment, mode, updateMode }: Props) {
@@ -19,7 +20,9 @@ function Nameplate({ alignment, mode, updateMode }: Props) {
         className={clsx(styles.nameplate, styles[alignment], {
           [styles.alt]: showAlt,
         })}
-        onClick={() => setShowAlt(!showAlt)}
+        onClick={() => {
+          setShowAlt(!showAlt);
+        }}
       >
         {showAlt ? "Ash Bacal" : "mezzode"}
       </button>
@@ -35,8 +38,8 @@ function Menu({
   updateMode,
 }: {
   alignment: Alignment;
-  mode: "light" | "dark";
-  updateMode: (mode: "light" | "dark") => void;
+  mode: Mode;
+  updateMode: (mode: Mode) => void;
 }) {
   const [showSocials, setShowSocials] = useState<boolean>(false);
   const toggleSocials = useCallback(() => {
@@ -47,22 +50,22 @@ function Menu({
   }, [mode, updateMode]);
   return (
     <div>
-    <div className={clsx(styles.menu, styles[alignment])}>
-      <Icon label="Email" icon="envelope" href="mailto:mezzode@mezzode.com" />
-      <Icon label="GitHub" icon="github" href="https://github.com/mezzode" />
-      <Icon
-        label="LinkedIn"
-        icon="linkedin"
-        href="https://www.linkedin.com/in/mezzode/"
-      />
+      <div className={clsx(styles.menu, styles[alignment])}>
+        <Icon label="Email" icon="envelope" href="mailto:mezzode@mezzode.com" />
+        <Icon label="GitHub" icon="github" href="https://github.com/mezzode" />
+        <Icon
+          label="LinkedIn"
+          icon="linkedin"
+          href="https://www.linkedin.com/in/mezzode/"
+        />
         <Icon label="Socials" icon="chat" onclick={toggleSocials} />
-      <Icon
-        label="Theme Toggle"
-        icon={mode === "dark" ? "moon" : "sun"}
-        onclick={toggleMode}
-      />
-      {/* TODO: If custom scheme, change mode icon to a reset button */}
-      <Icon label="Customize Colors" icon="palette" />
+        <Icon
+          label="Theme Toggle"
+          icon={mode === "dark" ? "moon" : "sun"}
+          onclick={toggleMode}
+        />
+        {/* TODO: If custom scheme, change mode icon to a reset button */}
+        <Icon label="Customize Colors" icon="palette" />
       </div>
       {showSocials && <Socials {...{ alignment }} />}
     </div>

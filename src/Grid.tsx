@@ -36,7 +36,7 @@ export default function Grid({
         for (let y = spacing / 2; y < canvas.height; y += spacing) {
           const distance = Math.sqrt((mouseX - x) ** 2 + (mouseY - y) ** 2);
           const opacity = Math.max(1 - distance / activeRadius, 0.2);
-          const opacityPercent = `${opacity * 100}%`;
+          const opacityPercent = `${(opacity * 100).toFixed(0)}%`;
           ctx.beginPath();
           ctx.strokeStyle = `color-mix(in oklab, ${primaryColor} ${opacityPercent}, ${secondaryColor})`;
 

@@ -5,6 +5,7 @@ import Grid from "./Grid";
 import Schemer from "./Schemer";
 
 const initialMode =
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches
     ? "dark"
     : "light";
@@ -45,14 +46,18 @@ function App() {
   );
 
   const handleModeChange = useCallback(
-    (e: MediaQueryListEvent) => updateMode(e.matches ? "dark" : "light"),
+    (e: MediaQueryListEvent) => {
+      updateMode(e.matches ? "dark" : "light");
+    },
     [updateMode]
   );
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
     mediaQuery.addEventListener("change", handleModeChange);
-    return () => mediaQuery.removeEventListener("change", handleModeChange);
+    return () => {
+      mediaQuery.removeEventListener("change", handleModeChange);
+    };
   }, [handleModeChange]);
 
   const onColorChange = useCallback(
