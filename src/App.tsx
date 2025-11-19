@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import Nameplate from "./Nameplate";
 import styles from "./App.module.css";
 import Grid from "./Grid";
+import Schemer from "./Schemer";
 
 const initialMode =
   window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches
@@ -10,13 +11,16 @@ const initialMode =
 
 type Mode = "light" | "dark";
 
+const initialPrimaryColor = getComputedStyle(
+  document.documentElement
+).getPropertyValue("--primary-color");
+const initialSecondaryColor = getComputedStyle(
+  document.documentElement
+).getPropertyValue("--secondary-color");
+
 function App() {
-  const primaryColor = getComputedStyle(
-    document.documentElement
-  ).getPropertyValue("--primary-color");
-  const secondaryColor = getComputedStyle(
-    document.documentElement
-  ).getPropertyValue("--secondary-color");
+  const [primaryColor, setPrimaryColor] = useState(initialPrimaryColor);
+  const [secondaryColor, setSecondaryColor] = useState(initialSecondaryColor);
 
   // TODO: Theme toggle and customizer
 
@@ -35,6 +39,7 @@ function App() {
         "--secondary-color",
         mode === "dark" ? "var(--dark)" : "var(--light)"
       );
+      // TODO: also set primaryColor and secondaryColor
     },
     [setMode]
   );
@@ -50,12 +55,39 @@ function App() {
     return () => mediaQuery.removeEventListener("change", handleModeChange);
   }, [handleModeChange]);
 
+  const onColorChange = useCallback(
+    (newPrimary: string, newSecondary: string) => {
+      if (newPrimary !== primaryColor) {
+        setPrimaryColor(newPrimary);
+        document.documentElement.style.setProperty(
+          "--primary-color",
+          newPrimary
+        );
+      }
+      if (newSecondary !== secondaryColor) {
+        setSecondaryColor(newSecondary);
+        document.documentElement.style.setProperty(
+          "--secondary-color",
+          newSecondary
+        );
+      }
+    },
+    [setPrimaryColor, setSecondaryColor, primaryColor, secondaryColor]
+  );
+
   return (
     <>
       <div className={styles.content}>
         <Nameplate alignment="right" {...{ mode, updateMode }} />
       </div>
       <Grid {...{ primaryColor, secondaryColor }} />
+      <Schemer
+        {...{
+          primaryColor,
+          secondaryColor,
+          onColorChange,
+        }}
+      />
     </>
   );
 }

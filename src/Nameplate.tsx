@@ -24,6 +24,7 @@ function Nameplate({ alignment, mode, updateMode }: Props) {
         {showAlt ? "Ash Bacal" : "mezzode"}
       </button>
       <Menu {...{ alignment, mode, updateMode }} />
+      {/* TODO: Schemer should live here */}
     </div>
   );
 }
@@ -55,6 +56,8 @@ function Menu({
         icon={mode === "dark" ? "moon" : "sun"}
         onclick={toggleMode}
       />
+      {/* TODO: If custom scheme, change mode icon to a reset button */}
+      <Icon label="Customize Colors" icon="palette" />
     </div>
   );
 }

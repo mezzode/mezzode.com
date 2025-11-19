@@ -1,0 +1,13 @@
+.container {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 1rem;
+  justify-content: end;
+  justify-items: end;
+}
+
+.field {
+  background: var(--secondary-color);
+  color: var(--primary-color);
+  border: solid;
+}
