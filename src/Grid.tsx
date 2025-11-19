@@ -41,11 +41,13 @@ export default function Grid({
           const opacityPercent = `${opacity * 100}%`;
           ctx.beginPath();
           ctx.strokeStyle = `color-mix(in oklab, ${primaryColor} ${opacityPercent}, ${secondaryColor})`;
-          ctx.beginPath();
-          ctx.moveTo(x - nodeRadius, y);
-          ctx.lineTo(x + nodeRadius, y);
-          ctx.moveTo(x, y - nodeRadius);
-          ctx.lineTo(x, y + nodeRadius);
+
+          // Lines offset by 0.5 on their parallel axes to prevent subpixel rendering when single pixel wide
+          // Lines also extended by 1 to account for the offset
+          ctx.moveTo(x - nodeRadius, y + 0.5);
+          ctx.lineTo(x + nodeRadius + 1, y + 0.5);
+          ctx.moveTo(x + 0.5, y - nodeRadius);
+          ctx.lineTo(x + 0.5, y + nodeRadius + 1);
           ctx.stroke();
         }
       }
