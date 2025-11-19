@@ -38,11 +38,15 @@ function Menu({
   mode: "light" | "dark";
   updateMode: (mode: "light" | "dark") => void;
 }) {
+  const [showSocials, setShowSocials] = useState<boolean>(false);
+  const toggleSocials = useCallback(() => {
+    setShowSocials(!showSocials);
+  }, [showSocials]);
   const toggleMode = useCallback(() => {
     updateMode(mode === "light" ? "dark" : "light");
   }, [mode, updateMode]);
-
   return (
+    <div>
     <div className={clsx(styles.menu, styles[alignment])}>
       <Icon label="Email" icon="envelope" href="mailto:mezzode@mezzode.com" />
       <Icon label="GitHub" icon="github" href="https://github.com/mezzode" />
@@ -51,6 +55,7 @@ function Menu({
         icon="linkedin"
         href="https://www.linkedin.com/in/mezzode/"
       />
+        <Icon label="Socials" icon="chat" onclick={toggleSocials} />
       <Icon
         label="Theme Toggle"
         icon={mode === "dark" ? "moon" : "sun"}
@@ -58,6 +63,39 @@ function Menu({
       />
       {/* TODO: If custom scheme, change mode icon to a reset button */}
       <Icon label="Customize Colors" icon="palette" />
+      </div>
+      {showSocials && <Socials {...{ alignment }} />}
+    </div>
+  );
+}
+
+function Socials({ alignment }: { alignment: Alignment }) {
+  return (
+    <div>
+      <div className={styles.close}>
+        <Icon label="Close Socials" icon="chevron-compact-up" />
+      </div>
+      <aside>
+        Not on social media much, but these are included for completeness as my
+        canonical profiles.
+      </aside>
+      <div className={clsx(styles.menu, styles[alignment])}>
+        <Icon
+          label="Bluesky"
+          icon="bluesky"
+          href="https://bsky.app/profile/mezzode.com"
+        />
+        <Icon
+          label="Mastodon"
+          icon="mastodon"
+          href="https://hachyderm.io/@mezzode"
+        />
+        <Icon
+          label="Twitter (I will never call it X)"
+          icon="twitter"
+          href="https://twitter.com/_mezzode"
+        />
+      </div>
     </div>
   );
 }
