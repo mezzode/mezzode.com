@@ -7,10 +7,23 @@
     border: solid;
     /* TODO: fade out text separately so it doesn't instantly transition */
     transition: all 0.3s; 
+    display: block;
+    box-sizing: content-box;
+    line-height: 1.5em;
+    user-select: text;
+    cursor: pointer;
 
     &.alt {
         background: var(--primary-color);
         color: var(--secondary-color);
+    }
+
+    &.left {
+        text-align: left;
+    }
+
+    &.right {
+        text-align: right;
     }
 }
 

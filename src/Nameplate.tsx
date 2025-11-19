@@ -14,14 +14,14 @@ function Nameplate({ alignment, mode, updateMode }: Props) {
   const [showAlt, setShowAlt] = useState<boolean>(false);
   return (
     <div className={clsx(styles.container, styles[alignment])}>
-      <div
-        className={clsx(styles.nameplate, {
+      <button
+        className={clsx(styles.nameplate, styles[alignment], {
           [styles.alt]: showAlt,
         })}
         onClick={() => setShowAlt(!showAlt)}
       >
         {showAlt ? "Ash Bacal" : "mezzode"}
-      </div>
+      </button>
       <Menu {...{ alignment, mode, updateMode }} />
     </div>
   );

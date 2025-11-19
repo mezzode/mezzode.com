@@ -4,6 +4,7 @@
   --primary-color: var(--dark);
   --secondary-color: var(--light);
 
+  /* TODO: update font */
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
