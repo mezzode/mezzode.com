@@ -50,17 +50,26 @@ export default function Grid({
         }
       }
     };
+
     const handleMouseMove = (e: MouseEvent) => {
       drawGrid(e.clientX, e.clientY);
     };
 
+    const handleTouchMove = (e: TouchEvent) => {
+      if (e.touches.length > 0) {
+        drawGrid(e.touches[0].clientX, e.touches[0].clientY);
+      }
+    };
+
     window.addEventListener("resize", resizeCanvas);
     window.addEventListener("mousemove", handleMouseMove); // On window so works when other elements cover
+    window.addEventListener("touchmove", handleTouchMove);
 
     resizeCanvas();
     return () => {
       window.removeEventListener("resize", resizeCanvas);
       window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("touchmove", handleTouchMove);
     };
   }, [primaryColor, secondaryColor, nodeRadius, spacing, activeRadius]);
 
