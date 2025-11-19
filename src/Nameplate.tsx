@@ -101,7 +101,7 @@ function Icon({
     return (
       <button
         type="button"
-        className={styles["icon-button"]}
+        className={styles.iconButton} // Change to named imports
         aria-label={label}
         onClick={onclick}
       >
