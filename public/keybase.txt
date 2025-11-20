@@ -1,0 +1,57 @@
+mezzode
+==================================================================
+https://keybase.io/mezzode
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://mezzode.com
+  * I am mezzode (https://keybase.io/mezzode) on keybase.
+  * I have a public key ASB7Frmk4-a1ux_zzuj7MNOItWPVuR2rFLV3voNzxOvCxQo
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "01201c616817064a794cb25cb7dc77a9ac7d2a6d0663176eb1580eee7897018b81ff0a",
+      "host": "keybase.io",
+      "kid": "01207b16b9a4e3e6b5bb1ff3cee8fb30d388b563d5b91dab14b577be8373c4ebc2c50a",
+      "uid": "bf5bfef9ac807579f00d22138ab08719",
+      "username": "mezzode"
+    },
+    "merkle_root": {
+      "ctime": 1575153851,
+      "hash": "19cc495c2059d181fe99c988ac0df57ae91501cb87dcf9e644c15e9943dbbf8ee80ca9f6f92c864a9d9c266dcb41d56981c8be85acded18dfb86f4a8af47a85e",
+      "hash_meta": "7c4748107cef35e661ba602da37c950bc7d8ae58a22b029d6ed9fd90566cbab4",
+      "seqno": 11508263
+    },
+    "service": {
+      "entropy": "9MzAqddyx9tgjlGee5lq3uu5",
+      "hostname": "mezzode.com",
+      "protocol": "http:"
+    },
+    "type": "web_service_binding",
+    "version": 2
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "5.0.0"
+  },
+  "ctime": 1575153856,
+  "expire_in": 504576000,
+  "prev": "c0610e6089a299dfc4ed1983ff925560e77159f129dc70bce8d1dc908c828a2b",
+  "seqno": 26,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgexa5pOPmtbsf887o+zDTiLVj1bkdqxS1d76Dc8TrwsUKp3BheWxvYWTESpcCGsQgwGEOYImimd/E7RmD/5JVYOdxWfEp3HC86NHckIyCiivEIFBKmC4ANXptk4PSG7xqPhjxvQ+/izc0XXI3rW+u0IUfAgHCo3NpZ8RAsjZ58+mUQTsj9LqijGLv+GRRKuDqjGDjJEZZL0tK/DMJOryBrb3Nmovz0MLkNO6ODYpBrKzUrTBDtgRC4Jb1A6hzaWdfdHlwZSCkaGFzaIKkdHlwZQildmFsdWXEIEAjcI6NXU5s71xU+C7Dbu+Sm4PrKZEF3FlCH2eab1bxo3RhZ80CAqd2ZXJzaW9uAQ==
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/mezzode
+
+==================================================================
