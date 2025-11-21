@@ -23,8 +23,6 @@ function App() {
   const [primaryColor, setPrimaryColor] = useState(initialPrimaryColor);
   const [secondaryColor, setSecondaryColor] = useState(initialSecondaryColor);
 
-  // TODO: Theme toggle and customizer
-
   const [mode, setMode] = useState<Mode>(initialMode);
   /**
    * Wrapper to update CSS properties as well when setting mode

@@ -28,6 +28,14 @@ function Nameplate({ alignment, mode, updateMode }: Props) {
       </button>
       <Menu {...{ alignment, mode, updateMode }} />
       {/* TODO: Schemer should live here */}
+      {/* Probs should add a state manager now so don't have to pass down a ton of callbacks from App */}
+      {/* <Schemer
+        {...{
+          primaryColor,
+          secondaryColor,
+          onColorChange,
+        }}
+      /> */}
     </div>
   );
 }

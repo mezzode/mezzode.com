@@ -10,4 +10,5 @@
   background: var(--secondary-color);
   color: var(--primary-color);
   border: solid;
+  font-family: 'IBM Plex Mono', monospace;
 }
