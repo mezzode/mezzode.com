@@ -1,47 +1,17 @@
-import { useState, useEffect, useCallback } from "react";
+import { useEffect, useCallback } from "react";
 import Nameplate from "./Nameplate";
 import styles from "./App.module.css";
 import Grid from "./Grid";
-import Schemer from "./Schemer";
-
-const initialMode =
-  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-  window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches
-    ? "dark"
-    : "light";
-
-type Mode = "light" | "dark";
-
-const initialPrimaryColor = getComputedStyle(
-  document.documentElement
-).getPropertyValue("--primary-color");
-const initialSecondaryColor = getComputedStyle(
-  document.documentElement
-).getPropertyValue("--secondary-color");
+import Schemer, { schemeSlice, type Mode } from "./Schemer";
+import { type RootState } from "./store";
+import { useDispatch, useSelector } from "react-redux";
 
 function App() {
-  const [primaryColor, setPrimaryColor] = useState(initialPrimaryColor);
-  const [secondaryColor, setSecondaryColor] = useState(initialSecondaryColor);
+  const dispatch = useDispatch();
+  const state = useSelector((state: RootState) => state);
 
-  const [mode, setMode] = useState<Mode>(initialMode);
-  /**
-   * Wrapper to update CSS properties as well when setting mode
-   */
-  const updateMode = useCallback(
-    (mode: Mode) => {
-      setMode(mode);
-      document.documentElement.style.setProperty(
-        "--primary-color",
-        mode === "dark" ? "var(--light)" : "var(--dark)"
-      );
-      document.documentElement.style.setProperty(
-        "--secondary-color",
-        mode === "dark" ? "var(--dark)" : "var(--light)"
-      );
-      // TODO: also set primaryColor and secondaryColor
-    },
-    [setMode]
-  );
+  const updateMode = (mode: Mode) =>
+    dispatch(schemeSlice.actions.setMode(mode));
 
   const handleModeChange = useCallback(
     (e: MediaQueryListEvent) => {
@@ -58,25 +28,12 @@ function App() {
     };
   }, [handleModeChange]);
 
-  const onColorChange = useCallback(
-    (newPrimary: string, newSecondary: string) => {
-      if (newPrimary !== primaryColor) {
-        setPrimaryColor(newPrimary);
-        document.documentElement.style.setProperty(
-          "--primary-color",
-          newPrimary
-        );
-      }
-      if (newSecondary !== secondaryColor) {
-        setSecondaryColor(newSecondary);
-        document.documentElement.style.setProperty(
-          "--secondary-color",
-          newSecondary
-        );
-      }
-    },
-    [setPrimaryColor, setSecondaryColor, primaryColor, secondaryColor]
-  );
+  const onColorChange = (newPrimary: string, newSecondary: string) => {
+    dispatch(schemeSlice.actions.setPrimaryColor(newPrimary));
+    dispatch(schemeSlice.actions.setSecondaryColor(newSecondary));
+  };
+
+  const { primaryColor, secondaryColor, mode } = state;
 
   return (
     <>

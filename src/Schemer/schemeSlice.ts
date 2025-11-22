@@ -1,5 +1,5 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-import listener from "../listener";
+import { startAppListening } from "../listener";
 
 const initialMode =
   // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
@@ -7,7 +7,7 @@ const initialMode =
     ? "dark"
     : "light";
 
-type Mode = "light" | "dark";
+export type Mode = "light" | "dark";
 
 const initialPrimaryColor = getComputedStyle(
   document.documentElement
@@ -24,15 +24,17 @@ const schemeSlice = createSlice({
     secondaryColor: initialSecondaryColor,
   },
   reducers: {
-    setDarkMode: (state) => {
-      state.mode = "dark";
-      state.primaryColor = "var(--light)";
-      state.secondaryColor = "var(--dark)";
-    },
-    setLightMode: (state) => {
-      state.mode = "light";
-      state.primaryColor = "var(--dark)";
-      state.secondaryColor = "var(--light)";
+    setMode: (state, action: PayloadAction<Mode>) => {
+      state.mode = action.payload;
+      if (action.payload === "dark") {
+        state.primaryColor = "var(--light)";
+        state.secondaryColor = "var(--dark)";
+      } else if (action.payload === "light") {
+        state.primaryColor = "var(--dark)";
+        state.secondaryColor = "var(--light)";
+      } else {
+        throw new Error("Invalid mode");
+      }
     },
     setPrimaryColor: (state, action: PayloadAction<string>) => {
       state.primaryColor = action.payload;
@@ -43,7 +45,7 @@ const schemeSlice = createSlice({
   },
 });
 
-listener.startListening({
+startAppListening({
   predicate: (_action, currentState, originalState) =>
     currentState.primaryColor !== originalState.primaryColor,
   effect: (_action, listenerApi) => {
@@ -54,7 +56,7 @@ listener.startListening({
   },
 });
 
-listener.startListening({
+startAppListening({
   predicate: (_action, currentState, originalState) =>
     currentState.secondaryColor !== originalState.secondaryColor,
   effect: (_action, listenerApi) => {
