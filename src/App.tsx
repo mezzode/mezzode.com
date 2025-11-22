@@ -8,10 +8,12 @@ import { useDispatch, useSelector } from "react-redux";
 
 function App() {
   const dispatch = useDispatch();
-  const state = useSelector((state: RootState) => state);
+  const scheme = useSelector((state: RootState) => state.scheme);
 
-  const updateMode = (mode: Mode) =>
-    dispatch(schemeSlice.actions.setMode(mode));
+  const updateMode = useCallback(
+    (mode: Mode) => dispatch(schemeSlice.actions.setMode(mode)),
+    [dispatch]
+  );
 
   const handleModeChange = useCallback(
     (e: MediaQueryListEvent) => {
@@ -37,7 +39,7 @@ function App() {
     );
   };
 
-  const { primaryColor, secondaryColor, mode } = state;
+  const { primaryColor, secondaryColor, mode } = scheme;
 
   return (
     <>

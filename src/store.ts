@@ -3,7 +3,7 @@ import schemeSlice from "./Schemer/schemeSlice";
 import listener from "./listener";
 
 const store = configureStore({
-  reducer: schemeSlice.reducer,
+  reducer: { scheme: schemeSlice.reducer },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().prepend(listener.middleware),
 });

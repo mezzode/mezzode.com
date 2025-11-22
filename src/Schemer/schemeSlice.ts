@@ -59,22 +59,22 @@ const schemeSlice = createSlice({
 
 startAppListening({
   predicate: (_action, currentState, originalState) =>
-    currentState.primaryColor !== originalState.primaryColor,
+    currentState.scheme.primaryColor !== originalState.scheme.primaryColor,
   effect: (_action, listenerApi) => {
     document.documentElement.style.setProperty(
       "--primary-color",
-      listenerApi.getState().primaryColor
+      listenerApi.getState().scheme.primaryColor
     );
   },
 });
 
 startAppListening({
   predicate: (_action, currentState, originalState) =>
-    currentState.secondaryColor !== originalState.secondaryColor,
+    currentState.scheme.secondaryColor !== originalState.scheme.secondaryColor,
   effect: (_action, listenerApi) => {
     document.documentElement.style.setProperty(
       "--secondary-color",
-      listenerApi.getState().secondaryColor
+      listenerApi.getState().scheme.secondaryColor
     );
   },
 });
