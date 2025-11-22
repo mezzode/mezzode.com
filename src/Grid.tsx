@@ -2,16 +2,23 @@ import { useRef, useEffect } from "react";
 import styles from "./Grid.module.css";
 
 interface GridProps {
-  primaryColor?: string;
-  secondaryColor?: string;
+  primaryColor: string;
+  secondaryColor: string;
   nodeRadius?: number;
   spacing?: number;
   activeRadius?: number;
 }
 
+const initialPrimaryColor = getComputedStyle(
+  document.documentElement
+).getPropertyValue("--primary-color");
+const initialSecondaryColor = getComputedStyle(
+  document.documentElement
+).getPropertyValue("--secondary-color");
+
 export default function Grid({
-  primaryColor = "#242424",
-  secondaryColor = "#f9f9f9",
+  primaryColor,
+  secondaryColor,
   nodeRadius = 4,
   spacing = 60,
   activeRadius = 150,
@@ -38,7 +45,9 @@ export default function Grid({
           const opacity = Math.max(1 - distance / activeRadius, 0.2);
           const opacityPercent = `${(opacity * 100).toFixed(0)}%`;
           ctx.beginPath();
-          ctx.strokeStyle = `color-mix(in oklab, ${primaryColor} ${opacityPercent}, ${secondaryColor})`;
+          ctx.strokeStyle = `color-mix(in oklab, ${
+            primaryColor || initialPrimaryColor
+          } ${opacityPercent}, ${secondaryColor || initialSecondaryColor})`;
 
           // Lines offset by 0.5 on their parallel axes to prevent subpixel rendering when single pixel wide
           // Lines also extended by 1 to account for the offset
