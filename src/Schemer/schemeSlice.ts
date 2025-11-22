@@ -9,6 +9,12 @@ const initialMode =
 
 export type Mode = "light" | "dark";
 
+const light = getComputedStyle(document.documentElement).getPropertyValue(
+  "--light"
+);
+const dark = getComputedStyle(document.documentElement).getPropertyValue(
+  "--dark"
+);
 const initialPrimaryColor = getComputedStyle(
   document.documentElement
 ).getPropertyValue("--primary-color");
@@ -27,11 +33,11 @@ const schemeSlice = createSlice({
     setMode: (state, action: PayloadAction<Mode>) => {
       state.mode = action.payload;
       if (action.payload === "dark") {
-        state.primaryColor = "var(--light)";
-        state.secondaryColor = "var(--dark)";
+        state.primaryColor = light;
+        state.secondaryColor = dark;
       } else if (action.payload === "light") {
-        state.primaryColor = "var(--dark)";
-        state.secondaryColor = "var(--light)";
+        state.primaryColor = dark;
+        state.secondaryColor = light;
       } else {
         throw new Error("Invalid mode");
       }
