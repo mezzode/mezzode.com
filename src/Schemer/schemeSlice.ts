@@ -1,4 +1,5 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
+import listener from "../listener";
 
 const initialMode =
   // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
@@ -39,6 +40,28 @@ const schemeSlice = createSlice({
     setSecondaryColor: (state, action: PayloadAction<string>) => {
       state.secondaryColor = action.payload;
     },
+  },
+});
+
+listener.startListening({
+  predicate: (_action, currentState, originalState) =>
+    currentState.primaryColor !== originalState.primaryColor,
+  effect: (_action, listenerApi) => {
+    document.documentElement.style.setProperty(
+      "--primary-color",
+      listenerApi.getState().primaryColor
+    );
+  },
+});
+
+listener.startListening({
+  predicate: (_action, currentState, originalState) =>
+    currentState.secondaryColor !== originalState.secondaryColor,
+  effect: (_action, listenerApi) => {
+    document.documentElement.style.setProperty(
+      "--secondary-color",
+      listenerApi.getState().secondaryColor
+    );
   },
 });
 
