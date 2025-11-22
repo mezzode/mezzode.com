@@ -41,19 +41,20 @@ function Menu({
   mode: Mode;
   updateMode: (mode: Mode) => void;
 }) {
-  const [showSchemer, setShowSchemer] = useState<boolean>(false);
-  const toggleSchemer = useCallback(() => {
-    setShowSchemer(!showSchemer);
-  }, [showSchemer]);
+  const [submenu, setSubmenu] = useState<null | "socials" | "schemer">(null);
 
-  const [showSocials, setShowSocials] = useState<boolean>(false);
+  const toggleSchemer = useCallback(() => {
+    setSubmenu(submenu === "schemer" ? null : "schemer");
+  }, [submenu, setSubmenu]);
+
   const toggleSocials = useCallback(() => {
-    setShowSocials(!showSocials);
-  }, [showSocials]);
+    setSubmenu(submenu === "socials" ? null : "socials");
+  }, [submenu, setSubmenu]);
 
   const toggleMode = useCallback(() => {
     updateMode(mode === "light" ? "dark" : "light");
   }, [mode, updateMode]);
+
   return (
     <div>
       <div className={clsx(styles.menu, styles[alignment])}>
@@ -73,8 +74,8 @@ function Menu({
         {/* TODO: If custom scheme, change mode icon to a reset button */}
         <Icon label="Customize Colors" icon="palette" onclick={toggleSchemer} />
       </div>
-      {showSocials && <Socials {...{ alignment }} />}
-      {showSchemer && <Schemer />}
+      {submenu === "socials" && <Socials {...{ alignment }} />}
+      {submenu === "schemer" && <Schemer />}
     </div>
   );
 }
