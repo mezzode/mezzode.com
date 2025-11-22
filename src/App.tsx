@@ -28,9 +28,13 @@ function App() {
     };
   }, [handleModeChange]);
 
-  const onColorChange = (newPrimary: string, newSecondary: string) => {
-    dispatch(schemeSlice.actions.setPrimaryColor(newPrimary));
-    dispatch(schemeSlice.actions.setSecondaryColor(newSecondary));
+  const onColorChange = (primaryColor: string, secondaryColor: string) => {
+    dispatch(
+      schemeSlice.actions.setColors({
+        primaryColor,
+        secondaryColor,
+      })
+    );
   };
 
   const { primaryColor, secondaryColor, mode } = state;

@@ -42,11 +42,17 @@ const schemeSlice = createSlice({
         throw new Error("Invalid mode");
       }
     },
-    setPrimaryColor: (state, action: PayloadAction<string>) => {
-      state.primaryColor = action.payload;
-    },
-    setSecondaryColor: (state, action: PayloadAction<string>) => {
-      state.secondaryColor = action.payload;
+    setColors: (
+      state,
+      action: PayloadAction<{ primaryColor?: string; secondaryColor?: string }>
+    ) => {
+      const { primaryColor, secondaryColor } = action.payload;
+      if (primaryColor !== undefined) {
+        state.primaryColor = primaryColor;
+      }
+      if (secondaryColor !== undefined) {
+        state.secondaryColor = secondaryColor;
+      }
     },
   },
 });
