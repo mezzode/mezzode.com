@@ -2,7 +2,7 @@ import { useEffect, useCallback } from "react";
 import Nameplate from "./Nameplate";
 import styles from "./App.module.css";
 import Grid from "./Grid";
-import Schemer, { schemeSlice, type Mode } from "./Schemer";
+import { schemeSlice, type Mode } from "./Schemer";
 import { type RootState } from "./store";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -30,15 +30,6 @@ function App() {
     };
   }, [handleModeChange]);
 
-  const onColorChange = (primaryColor: string, secondaryColor: string) => {
-    dispatch(
-      schemeSlice.actions.setColors({
-        primaryColor,
-        secondaryColor,
-      })
-    );
-  };
-
   const { primaryColor, secondaryColor, mode } = scheme;
 
   return (
@@ -47,13 +38,6 @@ function App() {
         <Nameplate alignment="right" {...{ mode, updateMode }} />
       </div>
       <Grid {...{ primaryColor, secondaryColor }} />
-      <Schemer
-        {...{
-          primaryColor,
-          secondaryColor,
-          onColorChange,
-        }}
-      />
     </>
   );
 }

@@ -2,6 +2,7 @@ import { useCallback, useState } from "react";
 import clsx from "clsx";
 import Icon from "./Icon";
 import styles from "./Nameplate.module.css";
+import Schemer from "../Schemer";
 
 type Alignment = "left" | "center" | "right";
 type Mode = "light" | "dark";
@@ -27,15 +28,6 @@ function Nameplate({ alignment, mode, updateMode }: Props) {
         {showAlt ? "Ash Bacal" : "mezzode"}
       </button>
       <Menu {...{ alignment, mode, updateMode }} />
-      {/* TODO: Schemer should live here */}
-      {/* Probs should add a state manager now so don't have to pass down a ton of callbacks from App */}
-      {/* <Schemer
-        {...{
-          primaryColor,
-          secondaryColor,
-          onColorChange,
-        }}
-      /> */}
     </div>
   );
 }
@@ -49,10 +41,16 @@ function Menu({
   mode: Mode;
   updateMode: (mode: Mode) => void;
 }) {
+  const [showSchemer, setShowSchemer] = useState<boolean>(false);
+  const toggleSchemer = useCallback(() => {
+    setShowSchemer(!showSchemer);
+  }, [showSchemer]);
+
   const [showSocials, setShowSocials] = useState<boolean>(false);
   const toggleSocials = useCallback(() => {
     setShowSocials(!showSocials);
   }, [showSocials]);
+
   const toggleMode = useCallback(() => {
     updateMode(mode === "light" ? "dark" : "light");
   }, [mode, updateMode]);
@@ -73,9 +71,10 @@ function Menu({
           onclick={toggleMode}
         />
         {/* TODO: If custom scheme, change mode icon to a reset button */}
-        <Icon label="Customize Colors" icon="palette" />
+        <Icon label="Customize Colors" icon="palette" onclick={toggleSchemer} />
       </div>
       {showSocials && <Socials {...{ alignment }} />}
+      {showSchemer && <Schemer />}
     </div>
   );
 }

@@ -1,25 +1,36 @@
 import { useCallback } from "react";
 import styles from "./Schemer.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import type { RootState } from "../store";
+import schemeSlice from "./schemeSlice";
 
-interface Props {
-  primaryColor: string;
-  secondaryColor: string;
-  onColorChange: (primary: string, secondary: string) => void;
-}
+function Schemer() {
+  const dispatch = useDispatch();
+  const scheme = useSelector((state: RootState) => state.scheme);
+  const { primaryColor, secondaryColor } = scheme;
 
-function Schemer({ primaryColor, secondaryColor, onColorChange }: Props) {
   const handlePrimaryColorChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      onColorChange(e.target.value, secondaryColor);
+      dispatch(
+        schemeSlice.actions.setColors({
+          primaryColor: e.target.value,
+          secondaryColor,
+        })
+      );
     },
-    [onColorChange, secondaryColor]
+    [dispatch, secondaryColor]
   );
 
   const handleSecondaryColorChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      onColorChange(primaryColor, e.target.value);
+      dispatch(
+        schemeSlice.actions.setColors({
+          primaryColor,
+          secondaryColor: e.target.value,
+        })
+      );
     },
-    [onColorChange, primaryColor]
+    [dispatch, primaryColor]
   );
 
   return (
