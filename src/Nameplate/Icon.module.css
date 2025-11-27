@@ -5,6 +5,10 @@
   color: var(--primary-color);
 
   &:hover {
-    opacity: 80%;
+    opacity: 50%;
   }
+}
+
+.active {
+  opacity: 80%;
 }

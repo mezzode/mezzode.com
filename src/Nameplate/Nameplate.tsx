@@ -72,14 +72,24 @@ function Menu({
           icon="linkedin"
           href="https://www.linkedin.com/in/mezzode/"
         />
-        <Icon label="Socials" icon="chat" onclick={toggleSocials} />
+        <Icon
+          label="Socials"
+          icon="chat"
+          onclick={toggleSocials}
+          active={submenu === "socials"}
+        />
         <Icon
           label="Theme Toggle"
           icon={mode === "dark" ? "moon" : "sun"}
           onclick={toggleMode}
         />
         {/* TODO: If custom scheme, change mode icon to a reset button */}
-        <Icon label="Customize Colors" icon="palette" onclick={toggleSchemer} />
+        <Icon
+          label="Customize Colors"
+          icon="palette"
+          onclick={toggleSchemer}
+          active={submenu === "schemer"}
+        />
       </div>
       <Submenu close={closeSubmenu} {...{ submenu, alignment }} />
     </div>
