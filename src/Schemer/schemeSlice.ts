@@ -7,7 +7,7 @@ const initialMode =
     ? "dark"
     : "light";
 
-export type Mode = "light" | "dark";
+export type Mode = "light" | "dark" | "custom";
 
 const light = getComputedStyle(document.documentElement).getPropertyValue(
   "--light"
@@ -38,8 +38,6 @@ const schemeSlice = createSlice({
       } else if (action.payload === "light") {
         state.primaryColor = dark;
         state.secondaryColor = light;
-      } else {
-        throw new Error("Invalid mode");
       }
     },
     setColors: (
@@ -47,6 +45,7 @@ const schemeSlice = createSlice({
       action: PayloadAction<{ primaryColor?: string; secondaryColor?: string }>
     ) => {
       const { primaryColor, secondaryColor } = action.payload;
+      state.mode = "custom";
       if (primaryColor !== undefined) {
         state.primaryColor = primaryColor;
       }

@@ -2,11 +2,10 @@ import { useCallback, useRef, useState } from "react";
 import clsx from "clsx";
 import Icon from "./Icon";
 import styles from "./Nameplate.module.css";
-import Schemer from "../Schemer";
+import Schemer, { type Mode } from "../Schemer";
 import { CSSTransition, SwitchTransition } from "react-transition-group";
 
 type Alignment = "left" | "center" | "right";
-type Mode = "light" | "dark";
 
 interface Props {
   alignment: Alignment;
@@ -59,8 +58,14 @@ function Menu({
   }, [submenu, setSubmenu]);
 
   const toggleMode = useCallback(() => {
-    updateMode(mode === "light" ? "dark" : "light");
+    updateMode(mode === "dark" ? "light" : "dark");
   }, [mode, updateMode]);
+
+  const modeIcon = {
+    light: "sun",
+    dark: "moon",
+    custom: "arrow-counterclockwise",
+  }[mode];
 
   return (
     <div>
@@ -78,12 +83,7 @@ function Menu({
           onclick={toggleSocials}
           active={submenu === "socials"}
         />
-        <Icon
-          label="Theme Toggle"
-          icon={mode === "dark" ? "moon" : "sun"}
-          onclick={toggleMode}
-        />
-        {/* TODO: If custom scheme, change mode icon to a reset button */}
+        <Icon label="Theme Toggle" icon={modeIcon} onclick={toggleMode} />
         <Icon
           label="Customize Colors"
           icon="palette"
