@@ -1,8 +1,9 @@
-import { useCallback, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import clsx from "clsx";
 import Icon from "./Icon";
 import styles from "./Nameplate.module.css";
 import Schemer from "../Schemer";
+import { CSSTransition, SwitchTransition } from "react-transition-group";
 
 type Alignment = "left" | "center" | "right";
 type Mode = "light" | "dark";
@@ -41,14 +42,16 @@ function Menu({
   mode: Mode;
   updateMode: (mode: Mode) => void;
 }) {
-  const [submenu, setSubmenu] = useState<null | "socials" | "schemer">(null);
+  const [submenu, setSubmenu] = useState<undefined | "socials" | "schemer">(
+    undefined
+  );
 
   const toggleSchemer = useCallback(() => {
-    setSubmenu(submenu === "schemer" ? null : "schemer");
+    setSubmenu(submenu === "schemer" ? undefined : "schemer");
   }, [submenu, setSubmenu]);
 
   const toggleSocials = useCallback(() => {
-    setSubmenu(submenu === "socials" ? null : "socials");
+    setSubmenu(submenu === "socials" ? undefined : "socials");
   }, [submenu, setSubmenu]);
 
   const toggleMode = useCallback(() => {
@@ -74,15 +77,50 @@ function Menu({
         {/* TODO: If custom scheme, change mode icon to a reset button */}
         <Icon label="Customize Colors" icon="palette" onclick={toggleSchemer} />
       </div>
-      {submenu === "socials" && <Socials {...{ alignment }} />}
-      {submenu === "schemer" && <Schemer />}
+      <Submenu {...{ submenu, alignment }} />
     </div>
   );
 }
 
-function Socials({ alignment }: { alignment: Alignment }) {
+interface SubmenuProps {
+  alignment: Alignment;
+  submenu?: "socials" | "schemer";
+}
+
+function Submenu({ alignment, submenu }: SubmenuProps) {
+  const containerRef = useRef(null);
+  const submenus = {
+    socials: <Socials {...{ alignment }} />,
+    schemer: <Schemer />,
+  };
+
   return (
-    <div>
+    <SwitchTransition>
+      <CSSTransition
+        nodeRef={containerRef}
+        key={submenu ?? "closed"}
+        timeout={150}
+        classNames={{
+          enterActive: styles.open,
+          enterDone: styles.open,
+        }}
+        unmountOnExit
+      >
+        <div className={clsx(styles.submenu)} ref={containerRef}>
+          {submenu && submenus[submenu]}
+        </div>
+      </CSSTransition>
+    </SwitchTransition>
+  );
+}
+
+interface SocialsProps {
+  alignment: Alignment;
+}
+
+function Socials({ alignment }: SocialsProps) {
+  return (
+    <>
       <div className={styles.close}>
         <Icon label="Close Socials" icon="chevron-compact-up" />
       </div>
@@ -107,8 +145,8 @@ function Socials({ alignment }: { alignment: Alignment }) {
           href="https://twitter.com/_mezzode"
         />
       </div>
-    </div>
+    </>
   );
-}
+};
 
 export default Nameplate;

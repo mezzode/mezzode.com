@@ -72,3 +72,15 @@
 .close {
     text-align: center;
 }
+
+.submenu {
+    pointer-events: none;
+    transition: all 0.15s ease;
+    opacity: 0;
+
+    &.open {
+        transform: translateY(10px);
+        opacity: 1;
+        pointer-events: all;
+    }
+}
