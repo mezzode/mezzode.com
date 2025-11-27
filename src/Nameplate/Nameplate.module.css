@@ -71,6 +71,8 @@
 
 .close {
     text-align: center;
+    line-height: 0;
+    margin-top: -1rem;
 }
 
 .submenu {

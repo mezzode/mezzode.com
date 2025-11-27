@@ -46,6 +46,10 @@ function Menu({
     undefined
   );
 
+  const closeSubmenu = useCallback(() => {
+    setSubmenu(undefined);
+  }, [setSubmenu]);
+
   const toggleSchemer = useCallback(() => {
     setSubmenu(submenu === "schemer" ? undefined : "schemer");
   }, [submenu, setSubmenu]);
@@ -77,7 +81,7 @@ function Menu({
         {/* TODO: If custom scheme, change mode icon to a reset button */}
         <Icon label="Customize Colors" icon="palette" onclick={toggleSchemer} />
       </div>
-      <Submenu {...{ submenu, alignment }} />
+      <Submenu close={closeSubmenu} {...{ submenu, alignment }} />
     </div>
   );
 }
@@ -85,9 +89,10 @@ function Menu({
 interface SubmenuProps {
   alignment: Alignment;
   submenu?: "socials" | "schemer";
+  close: () => void;
 }
 
-function Submenu({ alignment, submenu }: SubmenuProps) {
+function Submenu({ alignment, submenu, close }: SubmenuProps) {
   const containerRef = useRef(null);
   const submenus = {
     socials: <Socials {...{ alignment }} />,
@@ -99,14 +104,24 @@ function Submenu({ alignment, submenu }: SubmenuProps) {
       <CSSTransition
         nodeRef={containerRef}
         key={submenu ?? "closed"}
-        timeout={150}
+        timeout={100}
         classNames={{
+          enter: styles.open,
           enterActive: styles.open,
           enterDone: styles.open,
         }}
         unmountOnExit
       >
         <div className={clsx(styles.submenu)} ref={containerRef}>
+          {submenu && (
+            <div className={styles.close}>
+              <Icon
+                label="Close Socials"
+                icon="chevron-compact-up"
+                onclick={close}
+              />
+            </div>
+          )}
           {submenu && submenus[submenu]}
         </div>
       </CSSTransition>
@@ -121,9 +136,6 @@ interface SocialsProps {
 function Socials({ alignment }: SocialsProps) {
   return (
     <>
-      <div className={styles.close}>
-        <Icon label="Close Socials" icon="chevron-compact-up" />
-      </div>
       <aside>
         Not on social media much, but these are included for completeness as my
         canonical profiles.
