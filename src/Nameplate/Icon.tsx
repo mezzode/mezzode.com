@@ -2,14 +2,33 @@ import clsx from "clsx";
 import styles from "./Icon.module.css";
 import icons from "bootstrap-icons/bootstrap-icons.svg";
 
-interface IconProps {
+interface SharedIconProps {
   icon: string;
   /** Label for accessibility */
   label: string;
-  href?: string;
-  onclick?: () => void;
   active?: boolean;
 }
+
+interface PlainIconProps extends SharedIconProps {
+  onclick?: never;
+  href?: never;
+  rel?: never;
+}
+
+interface ButtonProps extends SharedIconProps {
+  onclick: () => void;
+  href?: never;
+  rel?: never;
+}
+
+interface LinkProps extends SharedIconProps {
+  href: string;
+  /** Additional `rel` attribute keywords */
+  rel?: string[];
+  onclick?: never;
+}
+
+type IconProps = PlainIconProps | ButtonProps | LinkProps;
 
 export default function Icon({
   icon,
@@ -17,6 +36,7 @@ export default function Icon({
   onclick,
   label,
   active,
+  rel,
 }: IconProps) {
   const conditionalClasses = { [styles.active]: active };
 
@@ -37,7 +57,7 @@ export default function Icon({
       <a
         href={href}
         target="_blank"
-        rel="noopener noreferrer"
+        rel={`noopener noreferrer ${rel?.join(" ") ?? ""}`}
         aria-label={label}
         className={clsx(conditionalClasses)}
       >

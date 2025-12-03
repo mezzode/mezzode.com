@@ -160,6 +160,7 @@ function Socials({ alignment }: SocialsProps) {
           label="Mastodon"
           icon="mastodon"
           href="https://hachyderm.io/@mezzode"
+          rel={["me"]}
         />
         <Icon
           label="Twitter (I will never call it X)"
