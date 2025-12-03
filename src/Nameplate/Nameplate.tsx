@@ -154,7 +154,7 @@ function Socials({ alignment }: SocialsProps) {
         <Icon
           label="Bluesky"
           icon="bluesky"
-          href="https://bsky.app/profile/mezzode.com"
+          href="https://bsky.app/profile/mezzode.dev"
         />
         <Icon
           label="Mastodon"
