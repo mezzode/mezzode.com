@@ -70,12 +70,23 @@ function Menu({
   return (
     <div>
       <div className={clsx(styles.menu, styles[alignment])}>
-        <Icon label="Email" icon="envelope" href="mailto:mezzode@mezzode.com" />
-        <Icon label="GitHub" icon="github" href="https://github.com/mezzode" />
+        <Icon
+          label="Email"
+          icon="envelope"
+          href="mailto:mezzode@mezzode.com"
+          rel={["me"]}
+        />
+        <Icon
+          label="GitHub"
+          icon="github"
+          href="https://github.com/mezzode"
+          rel={["me"]}
+        />
         <Icon
           label="LinkedIn"
           icon="linkedin"
           href="https://www.linkedin.com/in/mezzode/"
+          rel={["me"]}
         />
         <Icon
           label="Socials"
@@ -155,6 +166,7 @@ function Socials({ alignment }: SocialsProps) {
           label="Bluesky"
           icon="bluesky"
           href="https://bsky.app/profile/mezzode.dev"
+          rel={["me", "atproto"]}
         />
         <Icon
           label="Mastodon"
@@ -166,6 +178,7 @@ function Socials({ alignment }: SocialsProps) {
           label="Twitter (I will never call it X)"
           icon="twitter"
           href="https://twitter.com/_mezzode"
+          rel={["me"]}
         />
       </div>
     </>
