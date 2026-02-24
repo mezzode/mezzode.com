@@ -1,0 +1,22 @@
+<svg width="222" height="222" viewBox="0 0 222 222" fill="none" xmlns="http://www.w3.org/2000/svg">
+<style>
+@media (prefers-color-scheme: dark) {
+    :root {
+    filter: invert(100%);
+    }
+}
+</style>
+<path d="M100.889 42.2223V163.556" stroke="black" stroke-width="2" stroke-linejoin="round"/>
+<path d="M100.889 163.556H121.111" stroke="black" stroke-width="2" stroke-linejoin="round"/>
+<path d="M121.111 163.556V102.889" stroke="black" stroke-width="2" stroke-linejoin="round"/>
+<path d="M100.889 42.2223H121.111" stroke="black" stroke-width="2" stroke-linejoin="round"/>
+<path d="M121.111 62.4445V82.6667" stroke="black" stroke-width="2" stroke-linejoin="round"/>
+<path d="M121.111 102.889L161.556 123.111V102.889L121.111 82.6667" stroke="black" stroke-width="2" stroke-linejoin="round"/>
+<path d="M121.111 62.4445L161.556 82.6667V62.4445L121.111 42.2223" stroke="black" stroke-width="2" stroke-linejoin="round"/>
+<path d="M100.889 163.556V183.778H121.111V163.556" fill="black"/>
+<path d="M100.889 163.556V183.778H121.111V163.556" stroke="black" stroke-width="2" stroke-linejoin="round"/>
+<path d="M60.5 149.722H80.7222V129.5H60.5V149.722Z" fill="black" stroke="black" stroke-width="2" stroke-linejoin="round"/>
+<path d="M60.5 92.7223H80.7222V72.5H60.5V92.7223Z" fill="black" stroke="black" stroke-width="2" stroke-linejoin="round"/>
+<path d="M100.889 42.2223V183.778H121.111V102.889L161.556 123.111V102.889L121.111 82.6667V62.4445L161.556 82.6667V62.4445L121.111 42.2223H100.889Z" fill="black" stroke="black" stroke-width="2" stroke-linejoin="round"/>
+<circle cx="111" cy="111" r="99" stroke="black" stroke-width="24"/>
+</svg>
