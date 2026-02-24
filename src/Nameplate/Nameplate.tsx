@@ -73,7 +73,7 @@ function Menu({
         <Icon
           label="Email"
           icon="envelope"
-          href="mailto:mezzode@mezzode.com"
+          href="mailto:i.am@mezzode.com"
           rel={["me"]}
         />
         <Icon
